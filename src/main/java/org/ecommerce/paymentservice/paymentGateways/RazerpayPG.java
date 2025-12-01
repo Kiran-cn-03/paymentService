@@ -6,6 +6,9 @@ import com.razorpay.RazorpayException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
 @Component
 public class RazerpayPG implements PaymentGateway {
     private RazorpayClient razorpayClient;
@@ -19,7 +22,8 @@ public class RazerpayPG implements PaymentGateway {
         paymentLinkRequest.put("amount",amount);
         paymentLinkRequest.put("currency","INR");
         paymentLinkRequest.put("accept_partial",true);
-        paymentLinkRequest.put("expire_by",1737207514);
+        long expireBy = Instant.now().plus(30, ChronoUnit.MINUTES).getEpochSecond();
+        paymentLinkRequest.put("expire_by",expireBy);
         paymentLinkRequest.put("reference_id",orderId);
         paymentLinkRequest.put("description","Payment for order no " + orderId);
         JSONObject customer = new JSONObject();
@@ -33,9 +37,9 @@ public class RazerpayPG implements PaymentGateway {
         paymentLinkRequest.put("notify",notify);
         paymentLinkRequest.put("reminder_enable",false);
         JSONObject notes = new JSONObject();
-        notes.put("Notes","Payment for your Amazon Order");
+        notes.put("Notes","Payment for your ecommerce Order");
         paymentLinkRequest.put("notes",notes);
-        paymentLinkRequest.put("callback_url","https://www.scaler.com");
+        paymentLinkRequest.put("callback_url","https://www.linkedin.com/in/kiran-c-n-3936a218b/");
         paymentLinkRequest.put("callback_method","get");
 
         PaymentLink paymentLink = null;

@@ -9,7 +9,7 @@ public class ProductService {
     public ProductService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-    public String getProduct(int id) {
-        return restTemplate.getForObject("http://PRODUCTSERVICE/products/" + id, String.class);
-    }
+//    public String getProduct(int id) {
+//        return restTemplate.getForObject("http://PRODUCTSERVICE/products/" + id, String.class);
+//    }
 }

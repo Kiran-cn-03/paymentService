@@ -3,7 +3,6 @@ package org.ecommerce.paymentservice.controllers;
 
 import org.ecommerce.paymentservice.dtos.InitiatePayementDto;
 import org.ecommerce.paymentservice.services.PaymentService;
-import org.ecommerce.paymentservice.services.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     private PaymentService paymentService;
-    private ProductService productService;
-    public PaymentController(PaymentService paymentService,ProductService productService) {
+    //private ProductService productService;
+    public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;
-        this.productService = productService;
+        //this.productService = productService;
 
     }
 
@@ -34,10 +33,11 @@ public class PaymentController {
         return "OK";
     }
 
-    @GetMapping("/product/{id}")
-    public String getProduct(@PathVariable int id) {
-        return productService.getProduct(id);
-    }
+//    @GetMapping("/product/{id}")
+//    public String getProduct(@PathVariable int id)
+//    {
+//        return productService.getProduct(id);
+//    }
 
 }
 
